@@ -31,6 +31,8 @@ import java.util.Stack;
  * 节点总数在范围 [0, 10^4] 内
  */
 public class Problem589 {
+
+    // 迭代解法
     public List<Integer> preorder(Node root) {
         Stack<Node> stack = new Stack<>();
         LinkedList<Integer> values = new LinkedList<>();
@@ -47,5 +49,22 @@ public class Problem589 {
             }
         }
         return values;
+    }
+
+    // 递归解法
+    public List<Integer> preorder2(Node root) {
+        LinkedList<Integer> list = new LinkedList<>();
+        dfs(root, list);
+        return list;
+    }
+
+    private void dfs(Node root, LinkedList<Integer> list) {
+        if (root == null) {
+            return;
+        }
+        list.add(root.val);
+        for (Node child : root.children) {
+            dfs(child, list);
+        }
     }
 }
